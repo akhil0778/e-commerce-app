@@ -1,9 +1,8 @@
 import axios from 'axios';
 
 // Base API URL (you can replace this with the actual URL in production)
-const API_URL = 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL;
 
-// Get the Authorization token from local storage
 const getAuthToken = () => {
   return localStorage.getItem('token');
 };
@@ -16,7 +15,6 @@ const axiosInstance = axios.create({
   },
 });
 
-// Add token to headers if available
 axiosInstance.interceptors.request.use((config) => {
   const token = getAuthToken();
   if (token) {
